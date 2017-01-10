@@ -56,17 +56,9 @@
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _Collection = __webpack_require__(183);
+	var _MainMenu = __webpack_require__(187);
 
-	var _Collection2 = _interopRequireDefault(_Collection);
-
-	var _CollectionItem = __webpack_require__(184);
-
-	var _CollectionItem2 = _interopRequireDefault(_CollectionItem);
-
-	var _Button = __webpack_require__(185);
-
-	var _Button2 = _interopRequireDefault(_Button);
+	var _MainMenu2 = _interopRequireDefault(_MainMenu);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -81,22 +73,10 @@
 	var App = function (_React$Component) {
 	  _inherits(App, _React$Component);
 
-	  function App(props) {
+	  function App() {
 	    _classCallCheck(this, App);
 
-	    //BIND 'THIS' TO THE METHODS
-	    var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
-
-	    _this.handleSubmit = _this.handleSubmit.bind(_this);
-	    _this.handleChange = _this.handleChange.bind(_this);
-	    _this.handleSaveRecipe = _this.handleSaveRecipe.bind(_this);
-
-	    //
-	    _this.state = {
-	      items: [],
-	      ingredient: ''
-	    };
-	    return _this;
+	    return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
 	  }
 
 	  _createClass(App, [{
@@ -105,54 +85,9 @@
 	      return _react2.default.createElement(
 	        'div',
 	        null,
-	        _react2.default.createElement(
-	          'form',
-	          { onSubmit: this.handleSubmit },
-	          _react2.default.createElement('input', { onChange: this.handleChange, value: this.state.ingredient })
-	        ),
-	        _react2.default.createElement(
-	          'button',
-	          { className: 'btn', onClick: this.handleSaveRecipe },
-	          'Save Recipe'
-	        ),
-	        _react2.default.createElement(_Collection2.default, { header: 'Recipes', items: this.state.items })
+	        _react2.default.createElement(_MainMenu2.default, null)
 	      );
 	    }
-	  }, {
-	    key: 'handleChange',
-	    value: function handleChange(event) {
-	      //Extract what the using is typing and store it on state.ingredient
-	      this.setState({ ingredient: event.target.value });
-	    }
-	  }, {
-	    key: 'handleSubmit',
-	    value: function handleSubmit(event) {
-	      console.log('Submit');
-	      event.preventDefault();
-	      var newIngredient = {
-	        name: this.state.ingredient,
-	        id: Date.now()
-	      };
-	      this.setState(function (prevState) {
-	        return {
-	          items: prevState.items.concat(newIngredient),
-	          ingredient: ''
-	        };
-	      });
-	      console.log('~ End Handle Submit ~');
-	    }
-	  }, {
-	    key: 'handleSaveRecipe',
-	    value: function handleSaveRecipe(event) {
-	      var recipes = JSON.stringify(this.state.items);
-	      fs.writeFile('./app/data/recipes.json', recipes, 'utf8', function (error) {
-	        if (error) throw error;
-	        console.log('Recipes saved!');
-	      });
-	    }
-	  }, {
-	    key: 'componentWillMount',
-	    value: function componentWillMount() {}
 	  }]);
 
 	  return App;
@@ -21878,76 +21813,11 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 183 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _reactDom = __webpack_require__(32);
-
-	var _reactDom2 = _interopRequireDefault(_reactDom);
-
-	var _CollectionItem = __webpack_require__(184);
-
-	var _CollectionItem2 = _interopRequireDefault(_CollectionItem);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function Collection(props) {
-	  //Basically a for each
-	  return _react2.default.createElement(
-	    'ul',
-	    { className: 'collection with-header' },
-	    _react2.default.createElement(
-	      'li',
-	      { className: 'collection-header' },
-	      _react2.default.createElement(
-	        'h4',
-	        null,
-	        props.header
-	      )
-	    ),
-	    props.items.map(function (item) {
-	      return _react2.default.createElement(_CollectionItem2.default, { key: item.id, id: item.id, name: item.name });
-	    })
-	  );
-	}
-
-	module.exports = Collection;
-
-/***/ },
-/* 184 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _reactDom = __webpack_require__(32);
-
-	var _reactDom2 = _interopRequireDefault(_reactDom);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function CollectionItem(props) {
-
-	  return _react2.default.createElement(
-	    'li',
-	    { className: 'collection-item', key: props.id },
-	    props.name
-	  );
-	}
-
-	module.exports = CollectionItem;
-
-/***/ },
-/* 185 */
+/* 183 */,
+/* 184 */,
+/* 185 */,
+/* 186 */,
+/* 187 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21970,31 +21840,129 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var Button = function (_React$Component) {
-	  _inherits(Button, _React$Component);
+	var MainMenu = function (_React$Component) {
+	  _inherits(MainMenu, _React$Component);
 
-	  function Button() {
-	    _classCallCheck(this, Button);
+	  function MainMenu() {
+	    _classCallCheck(this, MainMenu);
 
-	    return _possibleConstructorReturn(this, (Button.__proto__ || Object.getPrototypeOf(Button)).apply(this, arguments));
+	    return _possibleConstructorReturn(this, (MainMenu.__proto__ || Object.getPrototypeOf(MainMenu)).apply(this, arguments));
 	  }
 
-	  _createClass(Button, [{
+	  _createClass(MainMenu, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      $(".button-collapse").sideNav();
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
-	      // console.log('~ Button Render ~');
 	      return _react2.default.createElement(
-	        'button',
-	        { className: 'btn' },
-	        this.props.name
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	          'ul',
+	          { id: 'slide-out', className: 'side-nav' },
+	          _react2.default.createElement(
+	            'li',
+	            null,
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'userView' },
+	              _react2.default.createElement(
+	                'div',
+	                { className: 'background' },
+	                _react2.default.createElement('img', { src: './app/images/c.jpg' })
+	              ),
+	              _react2.default.createElement(
+	                'a',
+	                { href: '#!user' },
+	                _react2.default.createElement('img', { className: 'circle', src: './app/images/b.jpg' })
+	              ),
+	              _react2.default.createElement(
+	                'a',
+	                { href: '#!name' },
+	                _react2.default.createElement(
+	                  'span',
+	                  { className: 'white-text name' },
+	                  'John Doe'
+	                )
+	              ),
+	              _react2.default.createElement(
+	                'a',
+	                { href: '#!email' },
+	                _react2.default.createElement(
+	                  'span',
+	                  { className: 'white-text email' },
+	                  'jdandturk@gmail.com'
+	                )
+	              )
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'li',
+	            null,
+	            _react2.default.createElement(
+	              'a',
+	              { href: '#!' },
+	              _react2.default.createElement(
+	                'i',
+	                { className: 'material-icons' },
+	                'cloud'
+	              ),
+	              'First Link With Icon'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'li',
+	            null,
+	            _react2.default.createElement(
+	              'a',
+	              { href: '#!' },
+	              'Second Link'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'li',
+	            null,
+	            _react2.default.createElement('div', { className: 'divider' })
+	          ),
+	          _react2.default.createElement(
+	            'li',
+	            null,
+	            _react2.default.createElement(
+	              'a',
+	              { className: 'subheader' },
+	              'Subheader'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'li',
+	            null,
+	            _react2.default.createElement(
+	              'a',
+	              { className: 'waves-effect', href: '#!' },
+	              'Third Link With Waves'
+	            )
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'a',
+	          { href: '#', 'data-activates': 'slide-out', className: 'button-collapse' },
+	          _react2.default.createElement(
+	            'i',
+	            { className: 'material-icons' },
+	            'menu'
+	          )
+	        )
 	      );
 	    }
 	  }]);
 
-	  return Button;
+	  return MainMenu;
 	}(_react2.default.Component);
 
-	module.exports = Button;
+	module.exports = MainMenu;
 
 /***/ }
 /******/ ]);

@@ -1,3 +1,4 @@
+
 let fs = require('fs')
 let settings;
 // fs.readFile('./app/data/settings.json','utf8', function (error,data)
@@ -9,7 +10,6 @@ let settings;
 settings = fs.readFileSync('./app/data/settings.json','utf8');
 settings = JSON.parse(settings)
 
-window.onload = function()
-{
-  console.log("Window is ready");
-}
+$(function() {
+  console.log('~ Window Ready ~');
+});
