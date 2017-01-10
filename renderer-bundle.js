@@ -60,6 +60,10 @@
 
 	var _MainMenu2 = _interopRequireDefault(_MainMenu);
 
+	var _Navbar = __webpack_require__(188);
+
+	var _Navbar2 = _interopRequireDefault(_Navbar);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -76,7 +80,12 @@
 	  function App() {
 	    _classCallCheck(this, App);
 
-	    return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
+	    var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this));
+
+	    _this.state = {
+	      menuName: 'Main Menu'
+	    };
+	    return _this;
 	  }
 
 	  _createClass(App, [{
@@ -85,6 +94,7 @@
 	      return _react2.default.createElement(
 	        'div',
 	        null,
+	        _react2.default.createElement(_Navbar2.default, { menuName: this.state.menuName }),
 	        _react2.default.createElement(_MainMenu2.default, null)
 	      );
 	    }
@@ -21963,6 +21973,41 @@
 	}(_react2.default.Component);
 
 	module.exports = MainMenu;
+
+/***/ },
+/* 188 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactDom = __webpack_require__(32);
+
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function Navbar(props) {
+	  console.log(props);
+	  return _react2.default.createElement(
+	    'nav',
+	    null,
+	    _react2.default.createElement(
+	      'div',
+	      { className: 'nav-wrapper' },
+	      _react2.default.createElement(
+	        'a',
+	        { className: 'brand-logo center' },
+	        props.menuName
+	      )
+	    )
+	  );
+	}
+
+	module.exports = Navbar;
 
 /***/ }
 /******/ ]);
