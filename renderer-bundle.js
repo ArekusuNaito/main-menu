@@ -64,6 +64,14 @@
 
 	var _Navbar2 = _interopRequireDefault(_Navbar);
 
+	var _Bottombar = __webpack_require__(189);
+
+	var _Bottombar2 = _interopRequireDefault(_Bottombar);
+
+	var _Sidebar = __webpack_require__(190);
+
+	var _Sidebar2 = _interopRequireDefault(_Sidebar);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -73,6 +81,11 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // This file is required by the index.html file and will
 	// be executed in the renderer process for that window.
 	// All of the Node.js APIs are available in this process.
+
+	//Containers
+
+	//Components
+
 
 	var App = function (_React$Component) {
 	  _inherits(App, _React$Component);
@@ -85,6 +98,7 @@
 	    _this.state = {
 	      menuName: 'Main Menu'
 	    };
+
 	    return _this;
 	  }
 
@@ -95,7 +109,9 @@
 	        'div',
 	        null,
 	        _react2.default.createElement(_Navbar2.default, { menuName: this.state.menuName }),
-	        _react2.default.createElement(_MainMenu2.default, null)
+	        _react2.default.createElement(_MainMenu2.default, null),
+	        _react2.default.createElement(_Bottombar2.default, null),
+	        _react2.default.createElement(_Sidebar2.default, null)
 	      );
 	    }
 	  }]);
@@ -21823,8 +21839,75 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 183 */,
-/* 184 */,
+/* 183 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactDom = __webpack_require__(32);
+
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+
+	var _CollectionItem = __webpack_require__(184);
+
+	var _CollectionItem2 = _interopRequireDefault(_CollectionItem);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function Collection(props) {
+	  //Basically a for each
+	  return _react2.default.createElement(
+	    'ul',
+	    { className: 'collection with-header' },
+	    _react2.default.createElement(
+	      'li',
+	      { className: 'collection-header' },
+	      _react2.default.createElement(
+	        'h4',
+	        null,
+	        props.header
+	      )
+	    ),
+	    props.items.map(function (item) {
+	      return _react2.default.createElement(_CollectionItem2.default, { key: item.id, id: item.id, name: item.name });
+	    })
+	  );
+	}
+
+	module.exports = Collection;
+
+/***/ },
+/* 184 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactDom = __webpack_require__(32);
+
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function CollectionItem(props) {
+
+	  return _react2.default.createElement(
+	    'li',
+	    { className: 'collection-item', key: props.id },
+	    props.name
+	  );
+	}
+
+	module.exports = CollectionItem;
+
+/***/ },
 /* 185 */,
 /* 186 */,
 /* 187 */
@@ -21842,6 +21925,10 @@
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
+	var _Collection = __webpack_require__(183);
+
+	var _Collection2 = _interopRequireDefault(_Collection);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -21849,6 +21936,8 @@
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	//Components
+
 
 	var MainMenu = function (_React$Component) {
 	  _inherits(MainMenu, _React$Component);
@@ -21856,115 +21945,29 @@
 	  function MainMenu() {
 	    _classCallCheck(this, MainMenu);
 
-	    return _possibleConstructorReturn(this, (MainMenu.__proto__ || Object.getPrototypeOf(MainMenu)).apply(this, arguments));
+	    var _this = _possibleConstructorReturn(this, (MainMenu.__proto__ || Object.getPrototypeOf(MainMenu)).call(this));
+
+	    _this.state = {
+	      items: []
+	    };
+	    for (var i = 0; i < 10; i++) {
+	      _this.state.items.push({ name: i + 1, id: i });
+	    }
+	    return _this;
 	  }
 
 	  _createClass(MainMenu, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
-	      $(".button-collapse").sideNav();
+	      $(".brand-logo").sideNav();
 	    }
 	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
-	        'div',
-	        null,
-	        _react2.default.createElement(
-	          'ul',
-	          { id: 'slide-out', className: 'side-nav' },
-	          _react2.default.createElement(
-	            'li',
-	            null,
-	            _react2.default.createElement(
-	              'div',
-	              { className: 'userView' },
-	              _react2.default.createElement(
-	                'div',
-	                { className: 'background' },
-	                _react2.default.createElement('img', { src: './app/images/c.jpg' })
-	              ),
-	              _react2.default.createElement(
-	                'a',
-	                { href: '#!user' },
-	                _react2.default.createElement('img', { className: 'circle', src: './app/images/b.jpg' })
-	              ),
-	              _react2.default.createElement(
-	                'a',
-	                { href: '#!name' },
-	                _react2.default.createElement(
-	                  'span',
-	                  { className: 'white-text name' },
-	                  'John Doe'
-	                )
-	              ),
-	              _react2.default.createElement(
-	                'a',
-	                { href: '#!email' },
-	                _react2.default.createElement(
-	                  'span',
-	                  { className: 'white-text email' },
-	                  'jdandturk@gmail.com'
-	                )
-	              )
-	            )
-	          ),
-	          _react2.default.createElement(
-	            'li',
-	            null,
-	            _react2.default.createElement(
-	              'a',
-	              { href: '#!' },
-	              _react2.default.createElement(
-	                'i',
-	                { className: 'material-icons' },
-	                'cloud'
-	              ),
-	              'First Link With Icon'
-	            )
-	          ),
-	          _react2.default.createElement(
-	            'li',
-	            null,
-	            _react2.default.createElement(
-	              'a',
-	              { href: '#!' },
-	              'Second Link'
-	            )
-	          ),
-	          _react2.default.createElement(
-	            'li',
-	            null,
-	            _react2.default.createElement('div', { className: 'divider' })
-	          ),
-	          _react2.default.createElement(
-	            'li',
-	            null,
-	            _react2.default.createElement(
-	              'a',
-	              { className: 'subheader' },
-	              'Subheader'
-	            )
-	          ),
-	          _react2.default.createElement(
-	            'li',
-	            null,
-	            _react2.default.createElement(
-	              'a',
-	              { className: 'waves-effect', href: '#!' },
-	              'Third Link With Waves'
-	            )
-	          )
-	        ),
-	        _react2.default.createElement(
-	          'a',
-	          { href: '#', 'data-activates': 'slide-out', className: 'button-collapse' },
-	          _react2.default.createElement(
-	            'i',
-	            { className: 'material-icons' },
-	            'menu'
-	          )
-	        )
+	        'main',
+	        { className: 'container' },
+	        _react2.default.createElement(_Collection2.default, { header: 'Items', items: this.state.items })
 	      );
 	    }
 	  }]);
@@ -21991,23 +21994,252 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function Navbar(props) {
-	  console.log(props);
 	  return _react2.default.createElement(
-	    'nav',
+	    'header',
 	    null,
 	    _react2.default.createElement(
 	      'div',
-	      { className: 'nav-wrapper' },
+	      { className: 'navbar-fixed' },
 	      _react2.default.createElement(
-	        'a',
-	        { className: 'brand-logo center' },
-	        props.menuName
+	        'nav',
+	        null,
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'nav-wrapper' },
+	          _react2.default.createElement(
+	            'a',
+	            { href: '#', className: 'brand-logo center', 'data-activates': 'slide-out' },
+	            props.menuName
+	          )
+	        )
 	      )
 	    )
 	  );
 	}
 
 	module.exports = Navbar;
+
+/***/ },
+/* 189 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactDom = __webpack_require__(32);
+
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function Bottombar(props) {
+	  return _react2.default.createElement(
+	    'footer',
+	    { className: 'page-footer' },
+	    _react2.default.createElement(
+	      'div',
+	      { className: 'container' },
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'row' },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'col l6 s12' },
+	          _react2.default.createElement(
+	            'h5',
+	            { className: 'white-text' },
+	            'Footer Content'
+	          ),
+	          _react2.default.createElement(
+	            'p',
+	            { className: 'grey-text text-lighten-4' },
+	            'You can use rows and columns here to organize your footer content.'
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'col l4 offset-l2 s12' },
+	          _react2.default.createElement(
+	            'h5',
+	            { className: 'white-text' },
+	            'Links'
+	          ),
+	          _react2.default.createElement(
+	            'ul',
+	            null,
+	            _react2.default.createElement(
+	              'li',
+	              null,
+	              _react2.default.createElement(
+	                'a',
+	                { className: 'grey-text text-lighten-3', href: '#!' },
+	                'Link 1'
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'li',
+	              null,
+	              _react2.default.createElement(
+	                'a',
+	                { className: 'grey-text text-lighten-3', href: '#!' },
+	                'Link 2'
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'li',
+	              null,
+	              _react2.default.createElement(
+	                'a',
+	                { className: 'grey-text text-lighten-3', href: '#!' },
+	                'Link 3'
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'li',
+	              null,
+	              _react2.default.createElement(
+	                'a',
+	                { className: 'grey-text text-lighten-3', href: '#!' },
+	                'Link 4'
+	              )
+	            )
+	          )
+	        )
+	      )
+	    ),
+	    _react2.default.createElement(
+	      'div',
+	      { className: 'footer-copyright' },
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'container' },
+	        '\xA9 2014 Copyright Text',
+	        _react2.default.createElement(
+	          'a',
+	          { className: 'grey-text text-lighten-4 right', href: '#!' },
+	          'More Links'
+	        )
+	      )
+	    )
+	  );
+	}
+
+	module.exports = Bottombar;
+
+/***/ },
+/* 190 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactDom = __webpack_require__(32);
+
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function Sidebar(props) {
+
+	  return _react2.default.createElement(
+	    'div',
+	    null,
+	    _react2.default.createElement(
+	      'ul',
+	      { id: 'slide-out', className: 'side-nav' },
+	      _react2.default.createElement(
+	        'li',
+	        null,
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'userView' },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'background' },
+	            _react2.default.createElement('img', { src: './app/images/c.jpg' })
+	          ),
+	          _react2.default.createElement(
+	            'a',
+	            { href: '#!user' },
+	            _react2.default.createElement('img', { className: 'circle', src: './app/images/b.jpg' })
+	          ),
+	          _react2.default.createElement(
+	            'a',
+	            { href: '#!name' },
+	            _react2.default.createElement(
+	              'span',
+	              { className: 'white-text name' },
+	              'John Doe'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'a',
+	            { href: '#!email' },
+	            _react2.default.createElement(
+	              'span',
+	              { className: 'white-text email' },
+	              'jdandturk@gmail.com'
+	            )
+	          )
+	        )
+	      ),
+	      _react2.default.createElement(
+	        'li',
+	        null,
+	        _react2.default.createElement(
+	          'a',
+	          { href: '#!' },
+	          _react2.default.createElement(
+	            'i',
+	            { className: 'material-icons' },
+	            'cloud'
+	          ),
+	          'First Link With Icon'
+	        )
+	      ),
+	      _react2.default.createElement(
+	        'li',
+	        null,
+	        _react2.default.createElement(
+	          'a',
+	          { href: '#!' },
+	          'Second Link'
+	        )
+	      ),
+	      _react2.default.createElement(
+	        'li',
+	        null,
+	        _react2.default.createElement('div', { className: 'divider' })
+	      ),
+	      _react2.default.createElement(
+	        'li',
+	        null,
+	        _react2.default.createElement(
+	          'a',
+	          { className: 'subheader' },
+	          'Subheader'
+	        )
+	      ),
+	      _react2.default.createElement(
+	        'li',
+	        null,
+	        _react2.default.createElement(
+	          'a',
+	          { className: 'waves-effect', href: '#!' },
+	          'Third Link With Waves'
+	        )
+	      )
+	    )
+	  );
+	}
+
+	module.exports = Sidebar;
 
 /***/ }
 /******/ ]);

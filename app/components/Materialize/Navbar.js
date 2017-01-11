@@ -3,13 +3,16 @@ import ReactDOM from 'react-dom'
 
 function Navbar(props)
 {
-  console.log(props);
     return (
-      <nav>
-       <div className="nav-wrapper">
-         <a className="brand-logo center">{props.menuName}</a>
-       </div>
-    </nav>
+    <header>
+      <div className="navbar-fixed">
+        <nav>
+           <div className="nav-wrapper">
+             <a href='#' className="brand-logo center" data-activates="slide-out">{props.menuName}</a>
+           </div>
+        </nav>
+      </div>
+    </header>
     )
 
 }

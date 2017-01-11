@@ -4,8 +4,12 @@
 
 import React from 'react'
 import ReactDOM from 'react-dom'
+//Containers
 import MainMenu from './app/Containers/Materialize/MainMenu'
+//Components
 import Navbar from './app/components/Materialize/Navbar'
+import Bottombar from './app/components/Materialize/Bottombar'
+import Sidebar from './app/components/Materialize/Sidebar'
 
 class App extends React.Component
 {
@@ -14,15 +18,19 @@ class App extends React.Component
     super()
     this.state =
     {
-      menuName: 'Main Menu'
+      menuName: 'Main Menu',
     }
+
   }
   render()
   {
     return(
       <div>
+
         <Navbar menuName={this.state.menuName}/>
         <MainMenu/>
+        <Bottombar/>
+        <Sidebar/>
       </div>
     )
   }
