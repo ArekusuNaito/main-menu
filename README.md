@@ -9,6 +9,10 @@
 
 ![](https://trello-attachments.s3.amazonaws.com/58740fbe320e8f0248075d56/58740fcfeedc9bab47bfc59a/1bf6023bcabf398a8a0b847e84d16449/upload_9_1_2017_at_16_35_06.png)
 
+## Prototype Progress
+- This is a small peek to what the app looks like
+
+![](https://trello-attachments.s3.amazonaws.com/58740fbe320e8f0248075d56/58740fcfeedc9bab47bfc59a/e8645bbbef4902811e1440b527e3732f/MenuPrototype01.gif)
 
 
 ## Notes

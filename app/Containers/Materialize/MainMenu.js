@@ -20,7 +20,7 @@ class MainMenu extends React.Component
   }
   componentDidMount()
   {
-    
+
   }
   render()
   {
@@ -29,15 +29,15 @@ class MainMenu extends React.Component
         <div className='card-panel grey darken-3'>
           <div className='row valign-wrapper'>
             <div className='col s12 valign center'>
-              <img src='./app/images/2.jpg' className='circle responsive-img'/>
+              <img src={settingsFile.profilePic} className='circle responsive-img'/>
             </div>
           </div>
           <div className='row'>
             <div className='divider'></div>
             <div className='section'>
               <h5>Player</h5>
-              <span>Player: </span>Alex<span></span><br/>
-              <span>Playtime: </span><span>24 yrs</span>
+              <span>Player: </span>{settingsFile.playerName}<span></span><br/>
+              <span>Email: </span><span>{settingsFile.email}</span>
             </div>
             <div className='divider'></div>
             <div className='section'>

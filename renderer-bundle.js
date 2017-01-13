@@ -22002,7 +22002,7 @@
 	            _react2.default.createElement(
 	              'div',
 	              { className: 'col s12 valign center' },
-	              _react2.default.createElement('img', { src: './app/images/2.jpg', className: 'circle responsive-img' })
+	              _react2.default.createElement('img', { src: settingsFile.profilePic, className: 'circle responsive-img' })
 	            )
 	          ),
 	          _react2.default.createElement(
@@ -22022,18 +22022,18 @@
 	                null,
 	                'Player: '
 	              ),
-	              'Alex',
+	              settingsFile.playerName,
 	              _react2.default.createElement('span', null),
 	              _react2.default.createElement('br', null),
 	              _react2.default.createElement(
 	                'span',
 	                null,
-	                'Playtime: '
+	                'Email: '
 	              ),
 	              _react2.default.createElement(
 	                'span',
 	                null,
-	                '24 yrs'
+	                settingsFile.email
 	              )
 	            ),
 	            _react2.default.createElement('div', { className: 'divider' }),
