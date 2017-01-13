@@ -21950,7 +21950,7 @@
 	    _this.state = {
 	      items: []
 	    };
-	    for (var i = 0; i < 10; i++) {
+	    for (var i = 0; i < 25; i++) {
 	      _this.state.items.push({ name: i + 1, id: i });
 	    }
 	    return _this;
@@ -21959,7 +21959,7 @@
 	  _createClass(MainMenu, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
-	      $(".brand-logo").sideNav();
+	      $(".sideBarTrigger").sideNav();
 	    }
 	  }, {
 	    key: 'render',
@@ -21967,7 +21967,111 @@
 	      return _react2.default.createElement(
 	        'main',
 	        { className: 'container' },
-	        _react2.default.createElement(_Collection2.default, { header: 'Items', items: this.state.items })
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'card-panel grey darken-3' },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'row valign-wrapper' },
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'col s12 valign center' },
+	              _react2.default.createElement('img', { src: './app/images/2.jpg', className: 'circle responsive-img' })
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'row' },
+	            _react2.default.createElement('div', { className: 'divider' }),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'section' },
+	              _react2.default.createElement(
+	                'h5',
+	                null,
+	                'Player'
+	              ),
+	              _react2.default.createElement(
+	                'span',
+	                null,
+	                'Player: '
+	              ),
+	              'Alex',
+	              _react2.default.createElement('span', null),
+	              _react2.default.createElement('br', null),
+	              _react2.default.createElement(
+	                'span',
+	                null,
+	                'Playtime: '
+	              ),
+	              _react2.default.createElement(
+	                'span',
+	                null,
+	                '24 yrs'
+	              )
+	            ),
+	            _react2.default.createElement('div', { className: 'divider' }),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'section' },
+	              _react2.default.createElement(
+	                'h5',
+	                null,
+	                'Archives'
+	              ),
+	              _react2.default.createElement(
+	                'p',
+	                null,
+	                'Written: 4'
+	              )
+	            ),
+	            _react2.default.createElement('div', { className: 'divider' }),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'section' },
+	              _react2.default.createElement(
+	                'h5',
+	                null,
+	                'Recipes'
+	              ),
+	              _react2.default.createElement(
+	                'p',
+	                null,
+	                'Learned: 11'
+	              )
+	            ),
+	            _react2.default.createElement('div', { className: 'divider' }),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'section' },
+	              _react2.default.createElement(
+	                'h5',
+	                null,
+	                'Recipes'
+	              ),
+	              _react2.default.createElement(
+	                'p',
+	                null,
+	                'Learned: 11'
+	              )
+	            ),
+	            _react2.default.createElement('div', { className: 'divider' }),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'section' },
+	              _react2.default.createElement(
+	                'h5',
+	                null,
+	                'Recipes'
+	              ),
+	              _react2.default.createElement(
+	                'p',
+	                null,
+	                'Learned: 11'
+	              )
+	            )
+	          )
+	        )
 	      );
 	    }
 	  }]);
@@ -22008,8 +22112,25 @@
 	          { className: 'nav-wrapper' },
 	          _react2.default.createElement(
 	            'a',
-	            { href: '#', className: 'brand-logo center', 'data-activates': 'slide-out' },
+	            { className: 'brand-logo center', 'data-activates': 'slide-out' },
 	            props.menuName
+	          ),
+	          _react2.default.createElement(
+	            'ul',
+	            { className: 'left' },
+	            _react2.default.createElement(
+	              'li',
+	              null,
+	              _react2.default.createElement(
+	                'a',
+	                { href: '#', className: 'sideBarTrigger', 'data-activates': 'slide-out' },
+	                _react2.default.createElement(
+	                  'i',
+	                  { className: 'material-icons' },
+	                  'reorder'
+	                )
+	              )
+	            )
 	          )
 	        )
 	      )
@@ -22036,95 +22157,7 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function Bottombar(props) {
-	  return _react2.default.createElement(
-	    'footer',
-	    { className: 'page-footer' },
-	    _react2.default.createElement(
-	      'div',
-	      { className: 'container' },
-	      _react2.default.createElement(
-	        'div',
-	        { className: 'row' },
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'col l6 s12' },
-	          _react2.default.createElement(
-	            'h5',
-	            { className: 'white-text' },
-	            'Footer Content'
-	          ),
-	          _react2.default.createElement(
-	            'p',
-	            { className: 'grey-text text-lighten-4' },
-	            'You can use rows and columns here to organize your footer content.'
-	          )
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'col l4 offset-l2 s12' },
-	          _react2.default.createElement(
-	            'h5',
-	            { className: 'white-text' },
-	            'Links'
-	          ),
-	          _react2.default.createElement(
-	            'ul',
-	            null,
-	            _react2.default.createElement(
-	              'li',
-	              null,
-	              _react2.default.createElement(
-	                'a',
-	                { className: 'grey-text text-lighten-3', href: '#!' },
-	                'Link 1'
-	              )
-	            ),
-	            _react2.default.createElement(
-	              'li',
-	              null,
-	              _react2.default.createElement(
-	                'a',
-	                { className: 'grey-text text-lighten-3', href: '#!' },
-	                'Link 2'
-	              )
-	            ),
-	            _react2.default.createElement(
-	              'li',
-	              null,
-	              _react2.default.createElement(
-	                'a',
-	                { className: 'grey-text text-lighten-3', href: '#!' },
-	                'Link 3'
-	              )
-	            ),
-	            _react2.default.createElement(
-	              'li',
-	              null,
-	              _react2.default.createElement(
-	                'a',
-	                { className: 'grey-text text-lighten-3', href: '#!' },
-	                'Link 4'
-	              )
-	            )
-	          )
-	        )
-	      )
-	    ),
-	    _react2.default.createElement(
-	      'div',
-	      { className: 'footer-copyright' },
-	      _react2.default.createElement(
-	        'div',
-	        { className: 'container' },
-	        '\xA9 2014 Copyright Text',
-	        _react2.default.createElement(
-	          'a',
-	          { className: 'grey-text text-lighten-4 right', href: '#!' },
-	          'More Links'
-	        )
-	      )
-	    )
-	  );
+	  return _react2.default.createElement('footer', null);
 	}
 
 	module.exports = Bottombar;

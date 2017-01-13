@@ -8,7 +8,10 @@ function Navbar(props)
       <div className="navbar-fixed">
         <nav>
            <div className="nav-wrapper">
-             <a href='#' className="brand-logo center" data-activates="slide-out">{props.menuName}</a>
+             <a  className="brand-logo center" data-activates="slide-out">{props.menuName}</a>
+             <ul className='left'>
+               <li><a href='#' className='sideBarTrigger' data-activates="slide-out"><i className="material-icons">reorder</i></a></li>
+             </ul>
            </div>
         </nav>
       </div>
