@@ -15,9 +15,9 @@ class SettingsMenu extends React.Component
 
     this.state =
     {
-      playerName: '',
-      profilePic: '',
-      email: '',
+      playerName: settingsFile.playerName,
+      profilePic: settingsFile.profilePic,
+      email: settingsFile.email,
     }
   }
   render ()
@@ -27,11 +27,11 @@ class SettingsMenu extends React.Component
         <form className='col s12' onSubmit={this.handleOnSubmit}>
           <div className='row'>
             <div className="input-field col s6">
-              <input placeholder="Player 1" id="playerName" type="text" className="validate" onChange={this.handleOnChangePlayerName}/>
+              <input placeholder="Player 1" value={this.state.playerName}  type="text" className="validate" onChange={this.handleOnChangePlayerName}/>
               <label>Player</label>
             </div>
             <div className="input-field col s6">
-              <input placeholder="player@email.com" id="email" type="email" className="validate" onChange={this.handleOnChangeEmail}/>
+              <input placeholder="player@email.com" value={this.state.email}  type="text" className="validate" onChange={this.handleOnChangeEmail}/>
               <label >E-Mail</label>
             </div>
           </div>
@@ -74,7 +74,15 @@ class SettingsMenu extends React.Component
   handleOnSubmit(event)
   {
     event.preventDefault();
-    console.log(this.state);
+    console.log(settingsFile);
+    settingsFile.playerName = this.state.playerName;
+    settingsFile.email = this.state.email;
+    settingsFile.profilePic = this.state.profilePic;
+    fs.writeFile(settingsFilePath,JSON.stringify(settingsFile), function (error,data)
+    {
+      if(error)throw error;
+      console.log('Settings File Updated!');
+    })
     //Submit should save this on a file on disk
   }
   handleProfilePicUpload(event)

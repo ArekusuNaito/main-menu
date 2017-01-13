@@ -20,7 +20,7 @@ class MainMenu extends React.Component
   }
   componentDidMount()
   {
-    $(".sideBarTrigger").sideNav();
+    
   }
   render()
   {

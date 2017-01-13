@@ -35,6 +35,10 @@ class App extends React.Component
       </div>
     )
   }
+  componentDidMount()
+  {
+    $(".sideBarTrigger").sideNav();
+  }
 }
 
 ReactDOM.render(<App/>,document.getElementById('app'))

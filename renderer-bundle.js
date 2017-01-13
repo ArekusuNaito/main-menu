@@ -118,6 +118,11 @@
 	        _react2.default.createElement(_Sidebar2.default, null)
 	      );
 	    }
+	  }, {
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      $(".sideBarTrigger").sideNav();
+	    }
 	  }]);
 
 	  return App;
@@ -21962,9 +21967,7 @@
 
 	  _createClass(MainMenu, [{
 	    key: 'componentDidMount',
-	    value: function componentDidMount() {
-	      $(".sideBarTrigger").sideNav();
-	    }
+	    value: function componentDidMount() {}
 	  }, {
 	    key: 'render',
 	    value: function render() {
@@ -22321,9 +22324,9 @@
 	    _this.handleOnSubmit = _this.handleOnSubmit.bind(_this);
 
 	    _this.state = {
-	      playerName: '',
-	      profilePic: '',
-	      email: ''
+	      playerName: settingsFile.playerName,
+	      profilePic: settingsFile.profilePic,
+	      email: settingsFile.email
 	    };
 	    return _this;
 	  }
@@ -22343,7 +22346,7 @@
 	            _react2.default.createElement(
 	              'div',
 	              { className: 'input-field col s6' },
-	              _react2.default.createElement('input', { placeholder: 'Player 1', id: 'playerName', type: 'text', className: 'validate', onChange: this.handleOnChangePlayerName }),
+	              _react2.default.createElement('input', { placeholder: 'Player 1', value: this.state.playerName, type: 'text', className: 'validate', onChange: this.handleOnChangePlayerName }),
 	              _react2.default.createElement(
 	                'label',
 	                null,
@@ -22353,7 +22356,7 @@
 	            _react2.default.createElement(
 	              'div',
 	              { className: 'input-field col s6' },
-	              _react2.default.createElement('input', { placeholder: 'player@email.com', id: 'email', type: 'email', className: 'validate', onChange: this.handleOnChangeEmail }),
+	              _react2.default.createElement('input', { placeholder: 'player@email.com', value: this.state.email, type: 'text', className: 'validate', onChange: this.handleOnChangeEmail }),
 	              _react2.default.createElement(
 	                'label',
 	                null,
@@ -22418,7 +22421,14 @@
 	    key: 'handleOnSubmit',
 	    value: function handleOnSubmit(event) {
 	      event.preventDefault();
-	      console.log(this.state);
+	      console.log(settingsFile);
+	      settingsFile.playerName = this.state.playerName;
+	      settingsFile.email = this.state.email;
+	      settingsFile.profilePic = this.state.profilePic;
+	      fs.writeFile(settingsFilePath, JSON.stringify(settingsFile), function (error, data) {
+	        if (error) throw error;
+	        console.log('Settings File Updated!');
+	      });
 	      //Submit should save this on a file on disk
 	    }
 	  }, {
