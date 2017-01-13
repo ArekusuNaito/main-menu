@@ -99,8 +99,10 @@
 
 	    var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this));
 
+	    _this.handleMainMenuSelect = _this.handleMainMenuSelect.bind(_this);
+	    _this.handleSettingsMenuSelect = _this.handleSettingsMenuSelect.bind(_this);
 	    _this.state = {
-	      menuName: 'Settings'
+	      menuName: 'Main Menu'
 	    };
 
 	    return _this;
@@ -113,10 +115,27 @@
 	        'div',
 	        null,
 	        _react2.default.createElement(_Navbar2.default, { menuName: this.state.menuName }),
-	        _react2.default.createElement(_SettingsMenu2.default, null),
+	        this.state.menuName == 'Main Menu' && _react2.default.createElement(_MainMenu2.default, null),
+	        this.state.menuName == 'Settings' && _react2.default.createElement(_SettingsMenu2.default, null),
 	        _react2.default.createElement(_Bottombar2.default, null),
-	        _react2.default.createElement(_Sidebar2.default, null)
+	        _react2.default.createElement(_Sidebar2.default, { onMainMenuSelect: this.handleMainMenuSelect, onSettingsMenuSelect: this.handleSettingsMenuSelect })
 	      );
+	    }
+	  }, {
+	    key: 'handleMainMenuSelect',
+	    value: function handleMainMenuSelect() {
+	      this.setState({
+	        menuName: 'Main Menu'
+	      });
+	      $('.sideBarTrigger').sideNav('hide');
+	    }
+	  }, {
+	    key: 'handleSettingsMenuSelect',
+	    value: function handleSettingsMenuSelect() {
+	      this.setState({
+	        menuName: 'Settings'
+	      });
+	      $('.sideBarTrigger').sideNav('hide');
 	    }
 	  }, {
 	    key: 'componentDidMount',
@@ -22134,7 +22153,7 @@
 	                _react2.default.createElement(
 	                  'i',
 	                  { className: 'material-icons' },
-	                  'reorder'
+	                  'menu'
 	                )
 	              )
 	            )
@@ -22207,7 +22226,7 @@
 	          _react2.default.createElement(
 	            'a',
 	            { href: '#!user' },
-	            _react2.default.createElement('img', { className: 'circle', src: './app/images/b.jpg' })
+	            _react2.default.createElement('img', { className: 'circle', src: settingsFile.profilePic })
 	          ),
 	          _react2.default.createElement(
 	            'a',
@@ -22215,7 +22234,7 @@
 	            _react2.default.createElement(
 	              'span',
 	              { className: 'white-text name' },
-	              'John Doe'
+	              settingsFile.playerName
 	            )
 	          ),
 	          _react2.default.createElement(
@@ -22224,9 +22243,23 @@
 	            _react2.default.createElement(
 	              'span',
 	              { className: 'white-text email' },
-	              'jdandturk@gmail.com'
+	              settingsFile.email
 	            )
 	          )
+	        )
+	      ),
+	      _react2.default.createElement(
+	        'li',
+	        null,
+	        _react2.default.createElement(
+	          'a',
+	          { href: '#!', onClick: props.onMainMenuSelect },
+	          _react2.default.createElement(
+	            'i',
+	            { className: 'material-icons' },
+	            'account_circle'
+	          ),
+	          'Status'
 	        )
 	      ),
 	      _react2.default.createElement(
@@ -22238,9 +22271,9 @@
 	          _react2.default.createElement(
 	            'i',
 	            { className: 'material-icons' },
-	            'cloud'
+	            'announcement'
 	          ),
-	          'First Link With Icon'
+	          'Quests'
 	        )
 	      ),
 	      _react2.default.createElement(
@@ -22249,21 +22282,12 @@
 	        _react2.default.createElement(
 	          'a',
 	          { href: '#!' },
-	          'Second Link'
-	        )
-	      ),
-	      _react2.default.createElement(
-	        'li',
-	        null,
-	        _react2.default.createElement('div', { className: 'divider' })
-	      ),
-	      _react2.default.createElement(
-	        'li',
-	        null,
-	        _react2.default.createElement(
-	          'a',
-	          { className: 'subheader' },
-	          'Subheader'
+	          _react2.default.createElement(
+	            'i',
+	            { className: 'material-icons' },
+	            'restaurant'
+	          ),
+	          'Recipes'
 	        )
 	      ),
 	      _react2.default.createElement(
@@ -22271,8 +22295,27 @@
 	        null,
 	        _react2.default.createElement(
 	          'a',
-	          { className: 'waves-effect', href: '#!' },
-	          'Third Link With Waves'
+	          { href: '#!' },
+	          _react2.default.createElement(
+	            'i',
+	            { className: 'material-icons' },
+	            'shopping_basket'
+	          ),
+	          'Groceries'
+	        )
+	      ),
+	      _react2.default.createElement(
+	        'li',
+	        null,
+	        _react2.default.createElement(
+	          'a',
+	          { href: '#!', onClick: props.onSettingsMenuSelect },
+	          _react2.default.createElement(
+	            'i',
+	            { className: 'material-icons' },
+	            'settings'
+	          ),
+	          'Settings'
 	        )
 	      )
 	    )

@@ -17,9 +17,11 @@ class App extends React.Component
   constructor()
   {
     super()
+    this.handleMainMenuSelect = this.handleMainMenuSelect.bind(this)
+    this.handleSettingsMenuSelect = this.handleSettingsMenuSelect.bind(this)
     this.state =
     {
-      menuName: 'Settings',
+      menuName: 'Main Menu',
     }
 
   }
@@ -27,17 +29,36 @@ class App extends React.Component
   {
     return(
       <div>
-
         <Navbar menuName={this.state.menuName}/>
-        <SettingsMenu/>
+        {this.state.menuName == 'Main Menu' && <MainMenu/>}
+        {this.state.menuName == 'Settings' && <SettingsMenu/>}
         <Bottombar/>
-        <Sidebar/>
+        <Sidebar onMainMenuSelect={this.handleMainMenuSelect} onSettingsMenuSelect={this.handleSettingsMenuSelect}/>
       </div>
     )
+  }
+  handleMainMenuSelect()
+  {
+    this.setState(
+      {
+        menuName: 'Main Menu'
+      }
+    )
+    $('.sideBarTrigger').sideNav('hide');
+  }
+  handleSettingsMenuSelect()
+  {
+    this.setState(
+      {
+        menuName: 'Settings'
+      }
+    )
+    $('.sideBarTrigger').sideNav('hide');
   }
   componentDidMount()
   {
     $(".sideBarTrigger").sideNav();
+
   }
 }
 
