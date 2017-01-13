@@ -60,6 +60,10 @@
 
 	var _MainMenu2 = _interopRequireDefault(_MainMenu);
 
+	var _SettingsMenu = __webpack_require__(191);
+
+	var _SettingsMenu2 = _interopRequireDefault(_SettingsMenu);
+
 	var _Navbar = __webpack_require__(188);
 
 	var _Navbar2 = _interopRequireDefault(_Navbar);
@@ -96,7 +100,7 @@
 	    var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this));
 
 	    _this.state = {
-	      menuName: 'Main Menu'
+	      menuName: 'Settings'
 	    };
 
 	    return _this;
@@ -109,7 +113,7 @@
 	        'div',
 	        null,
 	        _react2.default.createElement(_Navbar2.default, { menuName: this.state.menuName }),
-	        _react2.default.createElement(_MainMenu2.default, null),
+	        _react2.default.createElement(_SettingsMenu2.default, null),
 	        _react2.default.createElement(_Bottombar2.default, null),
 	        _react2.default.createElement(_Sidebar2.default, null)
 	      );
@@ -21966,7 +21970,7 @@
 	    value: function render() {
 	      return _react2.default.createElement(
 	        'main',
-	        { className: 'container' },
+	        { className: '' },
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'card-panel grey darken-3' },
@@ -22273,6 +22277,172 @@
 	}
 
 	module.exports = Sidebar;
+
+/***/ },
+/* 191 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactDom = __webpack_require__(32);
+
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+
+	var _Collection = __webpack_require__(183);
+
+	var _Collection2 = _interopRequireDefault(_Collection);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var SettingsMenu = function (_React$Component) {
+	  _inherits(SettingsMenu, _React$Component);
+
+	  function SettingsMenu(props) {
+	    _classCallCheck(this, SettingsMenu);
+
+	    //BIND 'THIS' TO THE METHODS
+	    var _this = _possibleConstructorReturn(this, (SettingsMenu.__proto__ || Object.getPrototypeOf(SettingsMenu)).call(this, props));
+
+	    _this.handleOnChangePlayerName = _this.handleOnChangePlayerName.bind(_this);
+	    _this.handleOnChangeEmail = _this.handleOnChangeEmail.bind(_this);
+	    _this.handleProfilePicUpload = _this.handleProfilePicUpload.bind(_this);
+	    _this.handleOnSubmit = _this.handleOnSubmit.bind(_this);
+
+	    _this.state = {
+	      playerName: '',
+	      profilePic: '',
+	      email: ''
+	    };
+	    return _this;
+	  }
+
+	  _createClass(SettingsMenu, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'row' },
+	        _react2.default.createElement(
+	          'form',
+	          { className: 'col s12', onSubmit: this.handleOnSubmit },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'row' },
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'input-field col s6' },
+	              _react2.default.createElement('input', { placeholder: 'Player 1', id: 'playerName', type: 'text', className: 'validate', onChange: this.handleOnChangePlayerName }),
+	              _react2.default.createElement(
+	                'label',
+	                null,
+	                'Player'
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'input-field col s6' },
+	              _react2.default.createElement('input', { placeholder: 'player@email.com', id: 'email', type: 'email', className: 'validate', onChange: this.handleOnChangeEmail }),
+	              _react2.default.createElement(
+	                'label',
+	                null,
+	                'E-Mail'
+	              )
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'row' },
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'col s4' },
+	              _react2.default.createElement('img', { id: 'playerPic', src: this.state.profilePic, className: 'circle responsive-img' })
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'file-field input-field col s7 offset-s1' },
+	              _react2.default.createElement(
+	                'div',
+	                { className: 'btn' },
+	                _react2.default.createElement(
+	                  'span',
+	                  null,
+	                  'Set Profile Photo'
+	                ),
+	                _react2.default.createElement('input', { type: 'file', accept: 'image/x-png,image/gif,image/jpeg', onChange: this.handleProfilePicUpload })
+	              )
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'row' },
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'col s2' },
+	              _react2.default.createElement(
+	                'button',
+	                { className: 'btn' },
+	                'Save'
+	              )
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }, {
+	    key: 'handleOnChangePlayerName',
+	    value: function handleOnChangePlayerName(event) {
+	      this.setState({
+	        playerName: event.target.value
+	      });
+	    }
+	  }, {
+	    key: 'handleOnChangeEmail',
+	    value: function handleOnChangeEmail(event) {
+	      this.setState({
+	        email: event.target.value
+	      });
+	    }
+	  }, {
+	    key: 'handleOnSubmit',
+	    value: function handleOnSubmit(event) {
+	      event.preventDefault();
+	      console.log(this.state);
+	      //Submit should save this on a file on disk
+	    }
+	  }, {
+	    key: 'handleProfilePicUpload',
+	    value: function handleProfilePicUpload(event) {
+
+	      var reader = new FileReader();
+	      reader.onload = function (readerEvent) {
+	        //reader.result = base64 pic
+	        this.setState({
+	          profilePic: reader.result
+	        });
+	      }.bind(this);
+	      reader.readAsDataURL(event.target.files[0]);
+	    }
+	  }, {
+	    key: 'componentWillMount',
+	    value: function componentWillMount() {}
+	  }]);
+
+	  return SettingsMenu;
+	}(_react2.default.Component);
+
+	module.exports = SettingsMenu;
 
 /***/ }
 /******/ ]);

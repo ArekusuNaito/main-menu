@@ -25,7 +25,7 @@ class MainMenu extends React.Component
   render()
   {
     return(
-      <main className='container'>
+      <main className=''>
         <div className='card-panel grey darken-3'>
           <div className='row valign-wrapper'>
             <div className='col s12 valign center'>

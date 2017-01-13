@@ -6,6 +6,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 //Containers
 import MainMenu from './app/Containers/Materialize/MainMenu'
+import SettingsMenu from './app/Containers/Materialize/SettingsMenu'
 //Components
 import Navbar from './app/components/Materialize/Navbar'
 import Bottombar from './app/components/Materialize/Bottombar'
@@ -18,7 +19,7 @@ class App extends React.Component
     super()
     this.state =
     {
-      menuName: 'Main Menu',
+      menuName: 'Settings',
     }
 
   }
@@ -28,7 +29,7 @@ class App extends React.Component
       <div>
 
         <Navbar menuName={this.state.menuName}/>
-        <MainMenu/>
+        <SettingsMenu/>
         <Bottombar/>
         <Sidebar/>
       </div>
