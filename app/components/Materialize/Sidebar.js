@@ -12,13 +12,13 @@ function Sidebar(props)
             <div className="background">
               <img src='./app/images/c.jpg'/>
             </div>
-            <a href="#!user"><img className="circle" src={settingsFile.profilePic}/></a>
-            <a href="#!name"><span className="white-text name">{settingsFile.playerName}</span></a>
-            <a href="#!email"><span className="white-text email">{settingsFile.email}</span></a>
+            <a href="#!user"><img className="circle" src={saveFile.profilePic}/></a>
+            <a href="#!name"><span className="white-text name">{saveFile.playerName}</span></a>
+            <a href="#!email"><span className="white-text email">{saveFile.email}</span></a>
           </div></li>
           <li><a href="#!" onClick={props.onMainMenuSelect}><i className="material-icons">account_circle</i>Status</a></li>
           <li><a href="#!"><i className="material-icons">announcement</i>Quests</a></li>
-          <li><a href="#!"><i className="material-icons">restaurant</i>Recipes</a></li>
+          <li><a href="#!" onClick={props.onRecipesMenuSelect}><i className="material-icons">restaurant</i>Recipes</a></li>
           <li><a href="#!"><i className="material-icons">shopping_basket</i>Groceries</a></li>
           <li><a href="#!" onClick={props.onSettingsMenuSelect}><i className="material-icons">settings</i>Settings</a></li>
           {/* //EXTRAS FOR DEVELOPMENT!!! */}

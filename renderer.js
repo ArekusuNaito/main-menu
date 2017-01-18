@@ -6,6 +6,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 //Containers
 import MainMenu from './app/Containers/Materialize/MainMenu'
+import RecipesMenu from './app/Containers/Materialize/RecipesMenu'
 import SettingsMenu from './app/Containers/Materialize/SettingsMenu'
 //Components
 import Navbar from './app/components/Materialize/Navbar'
@@ -18,10 +19,11 @@ class App extends React.Component
   {
     super()
     this.handleMainMenuSelect = this.handleMainMenuSelect.bind(this)
+    this.handleRecipesMenuSelect = this.handleRecipesMenuSelect.bind(this)
     this.handleSettingsMenuSelect = this.handleSettingsMenuSelect.bind(this)
     this.state =
     {
-      menuName: 'Main Menu',
+      menuName: 'Recipes',
     }
 
   }
@@ -31,9 +33,10 @@ class App extends React.Component
       <div>
         <Navbar menuName={this.state.menuName}/>
         {this.state.menuName == 'Main Menu' && <MainMenu/>}
+        {this.state.menuName == 'Recipes' && <RecipesMenu/>}
         {this.state.menuName == 'Settings' && <SettingsMenu/>}
         <Bottombar/>
-        <Sidebar onMainMenuSelect={this.handleMainMenuSelect} onSettingsMenuSelect={this.handleSettingsMenuSelect}/>
+        <Sidebar onMainMenuSelect={this.handleMainMenuSelect} onSettingsMenuSelect={this.handleSettingsMenuSelect} onRecipesMenuSelect={this.handleRecipesMenuSelect}/>
       </div>
     )
   }
@@ -42,6 +45,15 @@ class App extends React.Component
     this.setState(
       {
         menuName: 'Main Menu'
+      }
+    )
+    $('.sideBarTrigger').sideNav('hide');
+  }
+  handleRecipesMenuSelect()
+  {
+    this.setState(
+      {
+        menuName: 'Recipes'
       }
     )
     $('.sideBarTrigger').sideNav('hide');
@@ -58,6 +70,8 @@ class App extends React.Component
   componentDidMount()
   {
     $(".sideBarTrigger").sideNav();
+    //Activate modals
+    $('.modal').modal();
 
   }
 }

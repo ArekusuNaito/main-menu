@@ -15,9 +15,9 @@ class SettingsMenu extends React.Component
 
     this.state =
     {
-      playerName: settingsFile.playerName,
-      profilePic: settingsFile.profilePic,
-      email: settingsFile.email,
+      playerName: saveFile.playerName,
+      profilePic: saveFile.profilePic,
+      email: saveFile.email,
     }
   }
   render ()
@@ -74,11 +74,11 @@ class SettingsMenu extends React.Component
   handleOnSubmit(event)
   {
     event.preventDefault();
-    console.log(settingsFile);
-    settingsFile.playerName = this.state.playerName;
-    settingsFile.email = this.state.email;
-    settingsFile.profilePic = this.state.profilePic;
-    fs.writeFile(settingsFilePath,JSON.stringify(settingsFile), function (error,data)
+    console.log(saveFile);
+    saveFile.playerName = this.state.playerName;
+    saveFile.email = this.state.email;
+    saveFile.profilePic = this.state.profilePic;
+    fs.writeFile(saveFilePath,JSON.stringify(saveFile), function (error,data)
     {
       if(error)throw error;
       console.log('Settings File Updated!');
