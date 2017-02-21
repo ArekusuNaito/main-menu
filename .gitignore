@@ -17,7 +17,7 @@
 Thumbs.db
 
 # Build Systems #
+.fusebox/
 node_modules/
 bower_components/
 dist/
-build/
