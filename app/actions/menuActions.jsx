@@ -1,6 +1,7 @@
-const MENU_CHANGE = "MENU_CHANGE";
+export const MENU_CHANGE = "MENU_CHANGE";
 
-export function changeMenu(name)
+export function menuChange(name,path)
 {
-  return { type: MENU_CHANGE, name}
+  console.log('MenuChange',name + path);
+  return { type: MENU_CHANGE, name: name, path: path }
 }

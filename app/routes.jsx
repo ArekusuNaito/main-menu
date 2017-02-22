@@ -1,6 +1,6 @@
 import * as React from 'react'
 import {Provider} from 'react-redux'
-import {Router, Route, IndexRoute, hashHistory} from 'react-router'
+import {Router, Route, IndexRoute, createMemoryHistory} from 'react-router'
 import store from "./store.jsx"
 
 //
@@ -12,9 +12,10 @@ import SettingsMenu from "./menus/SettingsMenu.jsx"
 
 export default function routes()
 {
+  const history = createMemoryHistory("/home")
   return(
     <Provider store={store}>
-      <Router history={hashHistory}>
+      <Router history={history}>
         <Route path="/" component={App}>
           <IndexRoute component={HomeMenu}/>
           <Route path="home" component={HomeMenu}/>

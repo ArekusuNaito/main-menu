@@ -59,7 +59,7 @@ var App = function (_React$Component) {
       return React.createElement(
         'div',
         null,
-        React.createElement(_Navbar2.default, { menuName: this.props.menuName }),
+        React.createElement(_Navbar2.default, null),
         React.createElement(_Drawer2.default, null),
         this.props.children
       );
@@ -68,7 +68,7 @@ var App = function (_React$Component) {
     key: 'componentDidMount',
     value: function componentDidMount() {
       console.log('App did mount');
-      console.log(this.props.menuName);
+      console.log(this.props);
     }
   }]);
 
@@ -77,7 +77,7 @@ var App = function (_React$Component) {
 
 var mapStateToProps = function mapStateToProps(store) {
 
-  return { menuName: store.menu.name };
+  return { menuName: store.menu.name, path: store.menu.path };
 };
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps)(App);
@@ -123,12 +123,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function routes() {
+  var history = (0, _reactRouter.createMemoryHistory)("/home");
   return React.createElement(
     _reactRedux.Provider,
     { store: _store2.default },
     React.createElement(
       _reactRouter.Router,
-      { history: _reactRouter.hashHistory },
+      { history: history },
       React.createElement(
         _reactRouter.Route,
         { path: '/', component: _renderer2.default },
@@ -189,6 +190,8 @@ exports.default = menuReducer;
 
 var _menuActions = require("~/actions/menuActions.jsx");
 
+//menu.name
+//menu.path
 var initialState = {
   name: "Home",
   path: "/home"
@@ -199,7 +202,10 @@ function menuReducer() {
 
   switch (action.type) {
     case _menuActions.MENU_CHANGE:
-      return Object.assign({}, state, { name: action.name });
+      {
+        return Object.assign({}, state, { name: action.name });
+      }
+
     // return { ...state, menuName: action.menuName }
     // return {menuName: "Foobar"}
 
@@ -215,11 +221,12 @@ ___scope___.file("actions/menuActions.jsx", function(exports, require, module, _
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.changeMenu = changeMenu;
-var MENU_CHANGE = "MENU_CHANGE";
+exports.menuChange = menuChange;
+var MENU_CHANGE = exports.MENU_CHANGE = "MENU_CHANGE";
 
-function changeMenu(name) {
-  return { type: MENU_CHANGE, name: name };
+function menuChange(name, path) {
+  console.log('MenuChange', name + path);
+  return { type: MENU_CHANGE, name: name, path: path };
 }
 });
 ___scope___.file("menus/HomeMenu.jsx", function(exports, require, module, __filename, __dirname){ 
@@ -285,7 +292,7 @@ exports.default = HomeMenu;
 });
 ___scope___.file("components/materialize/Navbar.jsx", function(exports, require, module, __filename, __dirname){ 
 
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -293,9 +300,11 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = require("react");
+var _react = require('react');
 
 var React = _interopRequireWildcard(_react);
+
+var _reactRedux = require('react-redux');
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -317,32 +326,32 @@ var Navbar = function (_React$Component) {
   }
 
   _createClass(Navbar, [{
-    key: "render",
+    key: 'render',
     value: function render() {
       return React.createElement(
-        "div",
-        { className: "navbar-fixed" },
+        'div',
+        { className: 'navbar-fixed' },
         React.createElement(
-          "nav",
+          'nav',
           null,
           React.createElement(
-            "div",
-            { className: "nav-wrapper" },
+            'div',
+            { className: 'nav-wrapper' },
             React.createElement(
-              "span",
-              { className: "brand-logo" },
+              'span',
+              { className: 'brand-logo' },
               this.props.menuName
             ),
             React.createElement(
-              "ul",
-              { className: "left" },
+              'ul',
+              { className: 'left' },
               React.createElement(
-                "a",
-                { href: "#", "data-activates": "slide-out", className: "button-collapse" },
+                'a',
+                { href: '#', 'data-activates': 'slide-out', className: 'button-collapse' },
                 React.createElement(
-                  "i",
-                  { className: "material-icons" },
-                  "menu"
+                  'i',
+                  { className: 'material-icons' },
+                  'menu'
                 )
               )
             )
@@ -355,7 +364,11 @@ var Navbar = function (_React$Component) {
   return Navbar;
 }(React.Component);
 
-exports.default = Navbar;
+var mapStateToProps = function mapStateToProps(store) {
+  return { menuName: store.menu.name };
+};
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps)(Navbar);
 });
 ___scope___.file("menus/SettingsMenu.jsx", function(exports, require, module, __filename, __dirname){ 
 
@@ -487,8 +500,8 @@ var Drawer = function (_React$Component) {
             )
           )
         ),
-        React.createElement(_DrawerItem2.default, { to: '/', icon: 'account_circle', name: 'Home', onClick: this.handleDrawerItemClick.bind(this) }),
-        React.createElement(_DrawerItem2.default, { to: '/settings', icon: 'settings', name: 'Settings', onClick: this.handleDrawerItemClick.bind(this) })
+        React.createElement(_DrawerItem2.default, { to: '/', icon: 'account_circle', name: 'Home' }),
+        React.createElement(_DrawerItem2.default, { to: '/settings', icon: 'settings', name: 'Settings' })
       );
     }
   }, {
@@ -515,6 +528,7 @@ ___scope___.file("components/materialize/DrawerItem.jsx", function(exports, requ
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.DrawerItem = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -524,6 +538,10 @@ var React = _interopRequireWildcard(_react);
 
 var _reactRouter = require('react-router');
 
+var _reactRedux = require('react-redux');
+
+var _menuActions = require('~/actions/menuActions.jsx');
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -532,7 +550,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var DrawerItem = function (_React$Component) {
+var DrawerItem = exports.DrawerItem = function (_React$Component) {
   _inherits(DrawerItem, _React$Component);
 
   function DrawerItem() {
@@ -564,14 +582,18 @@ var DrawerItem = function (_React$Component) {
     value: function handleOnClick() {
 
       $('.button-collapse').sideNav('hide');
-      return this.props.name;
+      this.props.dispatch((0, _menuActions.menuChange)(this.props.name, this.props.to));
     }
   }]);
 
   return DrawerItem;
 }(React.Component);
 
-exports.default = DrawerItem;
+var mapStateToProps = function mapStateToProps(store) {
+  return { menuName: store.menu.name, path: store.menu.path };
+};
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps)(DrawerItem);
 });
 });
 FuseBox.pkg("react", {"object-assign":"4.1.0","fbjs":"0.8.8"}, function(___scope___){

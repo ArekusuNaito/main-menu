@@ -24,7 +24,7 @@ class App extends React.Component
   {
     return(
       <div>
-        <Navbar menuName={this.props.menuName}/>
+        <Navbar/>
         <Drawer/>
         {this.props.children}
       </div>
@@ -34,15 +34,15 @@ class App extends React.Component
   componentDidMount()
   {
     console.log('App did mount');
-    console.log(this.props.menuName);
+    console.log(this.props);
   }
 }
 
 
 const mapStateToProps = (store)=>
 {
-  
-  return {menuName: store.menu.name}
+
+  return {menuName: store.menu.name, path: store.menu.path}
 }
 
 export default connect(mapStateToProps)(App)

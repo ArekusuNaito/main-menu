@@ -24,8 +24,8 @@ export default class Drawer extends React.Component
             <span className="white-text email">jdandturk@gmail.com</span>
           </div>
         </li>
-          <DrawerItem to="/" icon="account_circle" name="Home" onClick={this.handleDrawerItemClick.bind(this)}/>
-          <DrawerItem to="/settings" icon="settings" name="Settings" onClick={this.handleDrawerItemClick.bind(this)}/>
+          <DrawerItem to="/" icon="account_circle" name="Home" />
+          <DrawerItem to="/settings" icon="settings" name="Settings"/>
         </ul>
     )
   }

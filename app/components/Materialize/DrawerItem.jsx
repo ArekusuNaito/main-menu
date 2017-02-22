@@ -1,7 +1,9 @@
 import * as React from 'react'
 import {Link} from 'react-router'
+import {connect} from 'react-redux'
+import {menuChange} from '~/actions/menuActions.jsx'
 
-export default class DrawerItem extends React.Component
+export class DrawerItem extends React.Component
 {
 
   render()
@@ -15,6 +17,13 @@ export default class DrawerItem extends React.Component
   {
 
     $('.button-collapse').sideNav('hide');
-    return this.props.name;
+    this.props.dispatch(menuChange(this.props.name,this.props.to))
   }
 }
+
+const mapStateToProps = (store)=>
+{
+  return {menuName: store.menu.name, path: store.menu.path}
+}
+
+export default connect(mapStateToProps)(DrawerItem)

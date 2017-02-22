@@ -3,15 +3,16 @@
 // All of the Node.js APIs are available in this process.
 
 import * as React from 'react'
+import {connect} from 'react-redux'
 
 
 
-export default class Navbar extends React.Component
+class Navbar extends React.Component
 {
   constructor()
   {
     super()
-    
+
   }
   render()
   {
@@ -30,3 +31,10 @@ export default class Navbar extends React.Component
   }
 
 }
+
+const mapStateToProps = (store)=>
+{
+  return {menuName: store.menu.name}
+}
+
+export default connect(mapStateToProps)(Navbar)
