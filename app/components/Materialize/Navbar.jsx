@@ -1,0 +1,32 @@
+// This file is required by the index.html file and will
+// be executed in the renderer process for that window.
+// All of the Node.js APIs are available in this process.
+
+import * as React from 'react'
+
+
+
+export default class Navbar extends React.Component
+{
+  constructor()
+  {
+    super()
+    
+  }
+  render()
+  {
+    return(
+      <div className="navbar-fixed">
+         <nav>
+           <div className="nav-wrapper">
+             <span className="brand-logo">{this.props.menuName}</span>
+             <ul className="left">
+               <a href="#" data-activates="slide-out" className="button-collapse"><i className="material-icons">menu</i></a>
+             </ul>
+           </div>
+         </nav>
+       </div>
+    )
+  }
+
+}
