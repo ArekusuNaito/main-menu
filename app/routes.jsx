@@ -8,11 +8,14 @@ import App from "./renderer.jsx"
 import HomeMenu from "./menus/HomeMenu.jsx"
 import SettingsMenu from "./menus/SettingsMenu.jsx"
 
+//actions
+import {loadHomeMenu,loadSettingsMenu} from '~/actions/menuActions.jsx'
 
 
 export default function routes()
 {
-  const history = createMemoryHistory("/home")
+  store.dispatch(loadSettingsMenu());
+  const history = createMemoryHistory(store.getState().menu.path)
   return(
     <Provider store={store}>
       <Router history={history}>

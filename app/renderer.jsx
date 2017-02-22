@@ -34,14 +34,14 @@ class App extends React.Component
   componentDidMount()
   {
     console.log('App did mount');
-    console.log(this.props);
+    $(".button-collapse").sideNav();
   }
 }
 
 
 const mapStateToProps = (store)=>
 {
-
+  // console.log(store);
   return {menuName: store.menu.name, path: store.menu.path}
 }
 

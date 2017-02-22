@@ -5,7 +5,7 @@
 import * as React from 'react'
 import {Link} from 'react-router'
 import DrawerItem from '~/components/materialize/DrawerItem.jsx'
-
+import {loadHomeMenu,loadSettingsMenu} from '~/actions/menuActions.jsx'
 
 
 export default class Drawer extends React.Component
@@ -24,19 +24,15 @@ export default class Drawer extends React.Component
             <span className="white-text email">jdandturk@gmail.com</span>
           </div>
         </li>
-          <DrawerItem to="/" icon="account_circle" name="Home" />
-          <DrawerItem to="/settings" icon="settings" name="Settings"/>
+          <DrawerItem name="Home" action={loadHomeMenu} path="/home" icon="account_circle"/>
+          <DrawerItem name="Settings" action={loadSettingsMenu} path="/settings" icon="settings"/>
         </ul>
     )
   }
 
-  handleDrawerItemClick(event)
-  {
-    console.log('Click')
-  }
   componentDidMount()
   {
-    $(".button-collapse").sideNav();
+
   }
 
 }

@@ -1,4 +1,4 @@
-import {MENU_CHANGE} from '~/actions/menuActions.jsx';
+import {LOAD_MENU} from '~/actions/menuActions.jsx';
 
 //menu.name
 //menu.path
@@ -11,14 +11,12 @@ export default function menuReducer(state  = initialState,action)
 {
   switch(action.type)
   {
-    case MENU_CHANGE:
+    case LOAD_MENU:
     {
-      return Object.assign({},state,{name: action.name})
+
+      return Object.assign({},state,{name: action.name,path:action.path})
+      // return { ...state, name: action.name , path:action.path }
     }
-
-    // return { ...state, menuName: action.menuName }
-    // return {menuName: "Foobar"}
-
     default: return state;
   }
 }

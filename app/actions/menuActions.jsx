@@ -1,7 +1,11 @@
-export const MENU_CHANGE = "MENU_CHANGE";
+export const LOAD_MENU = "LOAD_MENU"
 
-export function menuChange(name,path)
+export function loadSettingsMenu()
 {
-  console.log('MenuChange',name + path);
-  return { type: MENU_CHANGE, name: name, path: path }
+  return { type: LOAD_MENU, name: "Settings", path: "/settings" }
+}
+
+export function loadHomeMenu()
+{
+  return { type: LOAD_MENU, name: "Home", path: "/home" }
 }
