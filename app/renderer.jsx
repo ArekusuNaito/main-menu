@@ -11,7 +11,6 @@ import Drawer from './components/materialize/Drawer.jsx'
 import {connect} from 'react-redux'
 
 
-
 class App extends React.Component
 {
   constructor()
@@ -42,7 +41,7 @@ class App extends React.Component
 const mapStateToProps = (store)=>
 {
   // console.log(store);
-  return {menuName: store.menu.name, path: store.menu.path}
+  return {}
 }
 
 export default connect(mapStateToProps)(App)

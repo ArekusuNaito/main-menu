@@ -6,22 +6,34 @@ import * as React from 'react'
 import {Link} from 'react-router'
 import DrawerItem from '~/components/materialize/DrawerItem.jsx'
 import {loadHomeMenu,loadSettingsMenu} from '~/actions/menuActions.jsx'
+import * as menuActionCreators from '~/actions/menuActions.jsx'
+import { bindActionCreators } from 'redux'
+import {connect} from 'react-redux'
 
+const styles=
+{
+  bgColorBlack: {backgroundColor:"black"}
+}
 
-export default class Drawer extends React.Component
+class Drawer extends React.Component
 {
   render()
   {
+    //This way DrawerItem won't be aware of Redux
+    let {dispatch} = this.props
+    let boundActionCreators = bindActionCreators(menuActionCreators, dispatch)
+    let loadHomeMenu = boundActionCreators.loadHomeMenu
+    let loadSettingsMenu = boundActionCreators.loadSettingsMenu
     return(
       <ul id="slide-out" className="side-nav">
         <li>
           <div className="userView">
-            <div className="background">
-              <img src="../app/images/c.jpg"/>
+            <div className="background" style={styles.bgColorBlack}>
+              {/* <img src={this.props.profilePic}/> */}
             </div>
-            <img className="circle" src="../app/images/2.jpg"/>
-            <span className="white-text name">John Doe</span>
-            <span className="white-text email">jdandturk@gmail.com</span>
+            <img className="circle" src={this.props.profilePic}/>
+            <span className="white-text name">{this.props.username}</span>
+            <span className="white-text email">{this.props.email}</span>
           </div>
         </li>
           <DrawerItem name="Home" action={loadHomeMenu} path="/home" icon="account_circle"/>
@@ -36,3 +48,11 @@ export default class Drawer extends React.Component
   }
 
 }
+
+const mapStateToProps = (store)=>
+{
+  // console.log(store);
+  return {username: store.user.username, email:store.user.email,profilePic: store.user.profilePic}
+}
+
+export default connect(mapStateToProps)(Drawer)

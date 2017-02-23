@@ -20,9 +20,9 @@ class Navbar extends React.Component
       <div className="navbar-fixed">
          <nav>
            <div className="nav-wrapper">
-             <span className="brand-logo">{this.props.menuName}</span>
+             <span className="brand-logo center">{this.props.menuName}</span>
              <ul className="left">
-               <a href="#" data-activates="slide-out" className="button-collapse"><i className="material-icons">menu</i></a>
+               <a href="#" data-activates="slide-out" className="button-collapse show-on-large"><i className="material-icons">menu</i></a>
              </ul>
            </div>
          </nav>

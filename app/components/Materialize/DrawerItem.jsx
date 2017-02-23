@@ -1,9 +1,8 @@
 import * as React from 'react'
 import {Link} from 'react-router'
-import {connect} from 'react-redux'
-import {menuChange} from '~/actions/menuActions.jsx'
 
-export class DrawerItem extends React.Component
+
+export default class DrawerItem extends React.Component
 {
 
   render()
@@ -15,12 +14,7 @@ export class DrawerItem extends React.Component
 
   handleOnClick()
   {
-    // console.log(this.props);
     $('.button-collapse').sideNav('hide');
-    this.props.dispatch(this.props.action())
+    this.props.action()
   }
 }
-
-
-
-export default connect()(DrawerItem)

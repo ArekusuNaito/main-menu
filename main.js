@@ -3,7 +3,7 @@ const electron = require('electron')
 const app = electron.app
 // Module to create native browser window.
 const BrowserWindow = electron.BrowserWindow
-
+const dialog = electron.dialog;
 const path = require('path')
 const url = require('url')
 //Live-reloader
@@ -37,6 +37,8 @@ function createWindow () {
     mainWindow = null
   })
   client.create(mainWindow);
+  //create the dialogWindow
+  
 }
 
 // This method will be called when Electron has finished
