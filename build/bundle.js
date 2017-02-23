@@ -126,6 +126,9 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 //
 function routes() {
+  _store2.default.subscribe(function () {
+    localStorage.setItem('saveFile', JSON.stringify(_store2.default.getState()));
+  });
   _store2.default.dispatch((0, _menuActions.loadSettingsMenu)());
   var history = (0, _reactRouter.createMemoryHistory)(_store2.default.getState().menu.path);
   return React.createElement(
@@ -163,7 +166,8 @@ var _combinedReducers2 = _interopRequireDefault(_combinedReducers);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = (0, _redux.createStore)(_combinedReducers2.default);
+var persistedState = localStorage.getItem('saveFile') ? JSON.parse(localStorage.getItem('saveFile')) : {};
+exports.default = (0, _redux.createStore)(_combinedReducers2.default, persistedState);
 });
 ___scope___.file("reducers/combinedReducers.jsx", function(exports, require, module, __filename, __dirname){ 
 
@@ -425,7 +429,6 @@ var Navbar = function (_React$Component) {
 var mapStateToProps = function mapStateToProps(store) {
   return { menuName: store.menu.name };
 };
-
 exports.default = (0, _reactRedux.connect)(mapStateToProps)(Navbar);
 });
 ___scope___.file("menus/SettingsMenu.jsx", function(exports, require, module, __filename, __dirname){ 
@@ -471,7 +474,9 @@ var SettingsMenu = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (SettingsMenu.__proto__ || Object.getPrototypeOf(SettingsMenu)).call(this));
 
     _this.state = {
-      profilePic: props.profilePic
+      profilePic: props.profilePic,
+      username: props.username,
+      email: props.email
     };
     return _this;
   }
@@ -513,8 +518,8 @@ var SettingsMenu = function (_React$Component) {
         React.createElement(
           "div",
           { className: "row" },
-          React.createElement(_InputField2.default, { name: "username", onChange: this.handleInputChange.bind(this), icon: "account_circle", placeholder: "Username", type: "text", cols: "s12 m12 l12" }),
-          React.createElement(_InputField2.default, { name: "email", onChange: this.handleInputChange.bind(this), icon: "email", placeholder: "Email", type: "email", cols: "s12 m12 l12" })
+          React.createElement(_InputField2.default, { name: "username", onChange: this.handleInputChange.bind(this), value: this.state.username, icon: "account_circle", placeholder: "Username", type: "text", cols: "s12 m12 l12" }),
+          React.createElement(_InputField2.default, { name: "email", onChange: this.handleInputChange.bind(this), value: this.state.email, icon: "email", placeholder: "Email", type: "email", cols: "s12 m12 l12" })
         ),
         React.createElement(
           "button",
@@ -547,7 +552,6 @@ var SettingsMenu = function (_React$Component) {
         });
       }.bind(this);
       reader.readAsDataURL(event.target.files[0]);
-      console.log(this.refs);
     }
   }, {
     key: "componentDidMount",
@@ -562,7 +566,11 @@ var SettingsMenu = function (_React$Component) {
 
 var mapStateToProps = function mapStateToProps(store) {
   // console.log(store);
-  return { profilePic: store.user.profilePic };
+  return {
+    username: store.user.username,
+    email: store.user.email,
+    profilePic: store.user.profilePic
+  };
 };
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps)(SettingsMenu);
@@ -611,7 +619,7 @@ var InputField = function (_React$Component) {
           { className: "material-icons prefix" },
           this.props.icon
         ),
-        React.createElement("input", { name: this.props.name, onChange: this.props.onChange, placeholder: this.props.placeholder, type: this.props.type })
+        React.createElement("input", { name: this.props.name, value: this.props.value, onChange: this.props.onChange, placeholder: this.props.placeholder, type: this.props.type })
       );
     }
   }]);

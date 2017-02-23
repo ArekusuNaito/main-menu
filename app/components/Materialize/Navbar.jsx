@@ -36,5 +36,4 @@ const mapStateToProps = (store)=>
 {
   return {menuName: store.menu.name}
 }
-
 export default connect(mapStateToProps)(Navbar)

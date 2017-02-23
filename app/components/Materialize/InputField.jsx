@@ -17,7 +17,7 @@ export default class InputField extends React.Component
     return(
           <div className={className}>
             {this.props.icon && <i className="material-icons prefix">{this.props.icon}</i>}
-            <input name={this.props.name} onChange={this.props.onChange} placeholder={this.props.placeholder} type={this.props.type}/>
+            <input name={this.props.name} value={this.props.value} onChange={this.props.onChange} placeholder={this.props.placeholder} type={this.props.type}/>
           </div>
     )
   }

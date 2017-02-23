@@ -14,6 +14,9 @@ import {loadHomeMenu,loadSettingsMenu} from '~/actions/menuActions.jsx'
 
 export default function routes()
 {
+  store.subscribe(()=>{
+    localStorage.setItem('saveFile',JSON.stringify(store.getState()))
+  })
   store.dispatch(loadSettingsMenu());
   const history = createMemoryHistory(store.getState().menu.path)
   return(

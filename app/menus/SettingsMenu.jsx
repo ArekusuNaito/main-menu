@@ -10,7 +10,9 @@ class SettingsMenu extends React.Component
     super()
     this.state =
     {
-      profilePic:props.profilePic
+      profilePic:props.profilePic,
+      username: props.username,
+      email: props.email
     }
   }
   render()
@@ -32,8 +34,8 @@ class SettingsMenu extends React.Component
           </div>
         </div>
           <div className="row">
-          <InputField name ="username" onChange={this.handleInputChange.bind(this)} icon="account_circle" placeholder="Username" type="text" cols="s12 m12 l12"/>
-          <InputField name="email" onChange={this.handleInputChange.bind(this)} icon ="email" placeholder="Email" type="email" cols="s12 m12 l12"/>
+          <InputField name ="username" onChange={this.handleInputChange.bind(this)} value={this.state.username} icon="account_circle" placeholder="Username" type="text" cols="s12 m12 l12"/>
+          <InputField name="email" onChange={this.handleInputChange.bind(this)} value={this.state.email} icon ="email" placeholder="Email" type="email" cols="s12 m12 l12"/>
         </div>
         <button onClick={this.handleGetUserData.bind(this)} className="btn">Save</button>
       </div>
@@ -66,7 +68,6 @@ class SettingsMenu extends React.Component
       )
     }.bind(this)
     reader.readAsDataURL(event.target.files[0]);
-    console.log(this.refs);
   }
 
   componentDidMount()
@@ -79,7 +80,11 @@ class SettingsMenu extends React.Component
 const mapStateToProps = (store)=>
 {
   // console.log(store);
-  return {profilePic: store.user.profilePic}
+  return{
+    username: store.user.username,
+    email: store.user.email,
+    profilePic: store.user.profilePic
+  }
 }
 
 export default connect(mapStateToProps)(SettingsMenu)
